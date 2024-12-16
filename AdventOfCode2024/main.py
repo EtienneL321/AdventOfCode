@@ -5,12 +5,13 @@ from day3 import day_3
 from day4 import day_4
 from day5 import day_5
 from day6 import day_6
+from day7 import day_7
 
 import sys
 
 
 def main():
-  days = [day_1, day_2, day_3, day_4, day_5, day_6]
+  days = [day_1, day_2, day_3, day_4, day_5, day_6, day_7]
 
   try:
     query = sys.argv[1]

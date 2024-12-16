@@ -64,3 +64,20 @@ def read_to_char_matrix(input_file_name):
     print("Error: Could not read file " + input_file_name)
   
   return matrix
+
+
+def read_by_line(input_file_name, callback):
+  count = 0
+
+  # Open input file for reading
+  try:
+    with open(input_file_name, "r") as file:
+
+      # Iterate through each line of the input file
+      while line := file.readline():
+        count += callback(line)
+      
+  except IOError:
+    print("Error: Could not read file " + input_file_name)
+  
+  return count
