@@ -1,12 +1,12 @@
 # day4.py
 from helper import read_to_char_matrix
 
-def day_4():
+def day_4(input_text):
   print("\n**********************************************************")
   print("************************* Day 4 **************************")
   print("**********************************************************")
 
-  char_matrix = read_to_char_matrix("./inputs/day_4_input.txt")
+  char_matrix = read_to_char_matrix(input_text)
 
   xmas_occurrences = xmas_puzzle_solver(char_matrix)
   print(f"There are a total of {xmas_occurrences} XMAS occurrences.")

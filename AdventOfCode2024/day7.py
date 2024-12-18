@@ -1,13 +1,13 @@
 # day7.py
 from helper import read_by_line
 
-def day_7():
+def day_7(input_text):
   print("\n**********************************************************")
   print("************************* Day 7 **************************")
   print("**********************************************************")
 
   # This solution adds the || operator. To get the correct answer from part I, remove the || operator from calculate_result() and permutate_operators()
-  equation_total = read_by_line("./inputs/day_7_input.txt", find_valid_equations)
+  equation_total = read_by_line(input_text, find_valid_equations)
   print(f"The total calibration result is {equation_total}\n")
 
 

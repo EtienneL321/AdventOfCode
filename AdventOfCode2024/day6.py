@@ -1,12 +1,12 @@
 # day6.py
 from helper import read_to_char_matrix
 
-def day_6():
+def day_6(input_text):
   print("\n**********************************************************")
   print("************************* Day 6 **************************")
   print("**********************************************************")
 
-  maze_matrix = read_to_char_matrix("./inputs/day_6_input.txt")
+  maze_matrix = read_to_char_matrix(input_text)
 
   distinct_positions = find_guard_path(maze_matrix)
   print(f"The guard moves to {distinct_positions} distinct positions")

@@ -1,12 +1,12 @@
 # day1.py
 from helper import read_to_list
 
-def day_1():
+def day_1(input_text):
   print("\n**********************************************************")
   print("************************* Day 1 **************************")
   print("**********************************************************")
   
-  list1, list2 = read_to_list("./inputs/day_1_input.txt")
+  list1, list2 = read_to_list(input_text)
 
   distance = location_id_distance(list1, list2)
   print(f"Distance between location ids is: {distance}")

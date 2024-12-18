@@ -1,12 +1,12 @@
 # day2.py
 from helper import read_to_integer_matrix
 
-def day_2():
+def day_2(input_text):
   print("\n**********************************************************")
   print("************************* Day 2 **************************")
   print("**********************************************************")
   
-  int_matrix = read_to_integer_matrix("./inputs/day_2_input.txt")
+  int_matrix = read_to_integer_matrix(input_text)
 
   safe_score = calculate_safe_report_count(int_matrix)
   print(f"There are a total of {safe_score} safe reports.")

@@ -1,14 +1,14 @@
 # day5.py
 
-def day_5():
+def day_5(input_text):
   print("\n**********************************************************")
   print("************************* Day 5 **************************")
   print("**********************************************************")
 
-  sum_of_updates = correct_updates("./inputs/day_5_input.txt")
+  sum_of_updates = correct_updates(input_text)
   print(f"The total sum of middle numbers from the correct updates is {sum_of_updates}")
 
-  sum_of_incorrect_updates = fix_updates("./inputs/day_5_input.txt")
+  sum_of_incorrect_updates = fix_updates(input_text)
   print(f"The total sum of middle numbers from the newly updates is {sum_of_incorrect_updates}\n")
 
 

@@ -10,12 +10,21 @@ from day8 import day_8
 
 import sys
 
+def file_name(num, test):
+  if test:
+    return f"./inputs/day_{num}_test_input.txt"
+  else:
+    return f"./inputs/day_{num}_input.txt"
 
 def main():
   days = [day_1, day_2, day_3, day_4, day_5, day_6, day_7, day_8]
 
   try:
     query = sys.argv[1]
+
+    test = False
+    if len(sys.argv) == 3 and sys.argv[2] == "-t":
+      test = True
   except ValueError:
     print("Please provide a valid integer or range")
     sys.exit(1) 
@@ -25,9 +34,9 @@ def main():
 
     if query < 1 or query > 25:
       print("\nInputed day was not between 1 and 25. Printing day 1 results instead")
-      days[0]()
+      days[0](file_name(1, test))
     else:
-      days[query - 1]()
+      days[query - 1](file_name(query, test))
   else:
     start, end = query.split("-")
     start = int(start)
@@ -35,10 +44,10 @@ def main():
 
     if start < 1 or end > 25:
       print("\nInputed day range was not between 1 and 25. Printing day 1 results instead")
-      days[0]()
+      days[0](file_name(1, test))
     else:
       for i in range(start-1, end):
-        days[i]()
+        days[i](file_name(i+1, test))
 
 
 if __name__ == "__main__":

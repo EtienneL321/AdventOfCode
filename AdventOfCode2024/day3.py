@@ -1,15 +1,15 @@
 # day3.py
 import re
 
-def day_3():
+def day_3(input_text):
   print("\n**********************************************************")
   print("************************* Day 3 **************************")
   print("**********************************************************")
 
-  multiplications = read_corrupted_file("./inputs/day_3_input.txt")
+  multiplications = read_corrupted_file(input_text)
   print(f"Total number of multiplications add up to {multiplications}")
 
-  new_multiplications = read_corrupted_file_with_do_and_dont("./inputs/day_3_input.txt")
+  new_multiplications = read_corrupted_file_with_do_and_dont(input_text)
   print(f"Total number of multiplications after extra instructoins add up to {new_multiplications}\n")
 
 
