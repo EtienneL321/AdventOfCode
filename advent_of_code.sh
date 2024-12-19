@@ -14,11 +14,9 @@ if [ "$language" == "-p" ]; then
 
 elif [ "$language" == "-c" ]; then
   path="./AdventOfCode$year/main.c"
-  gcc $path -o main
+  helper_path="./AdventOfCode$year/helper.c"
+  gcc $path $helper_path -o build/main
 
   # run c executable
-  ./main
-
-  # remove c executable
-  rm main
+  ./build/main
 fi
