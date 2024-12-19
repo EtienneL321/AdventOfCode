@@ -6,8 +6,19 @@ language=$2
 days=$3
 test_flag=$4
 
-path="./AdventOfCode$year/main.py"
+
 
 if [ "$language" == "-p" ]; then
+  path="./AdventOfCode$year/main.py"
   python3 $path $days $test_flag
+
+elif [ "$language" == "-c" ]; then
+  path="./AdventOfCode$year/main.c"
+  gcc $path -o main
+
+  # run c executable
+  ./main
+
+  # remove c executable
+  rm main
 fi
