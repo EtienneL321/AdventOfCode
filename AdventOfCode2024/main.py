@@ -1,20 +1,20 @@
 from helper import read_to_list, read_to_integer_matrix, read_to_char_matrix
-from day1 import day_1
-from day2 import day_2
-from day3 import day_3
-from day4 import day_4
-from day5 import day_5
-from day6 import day_6
-from day7 import day_7
-from day8 import day_8
+from python_solutions.day1 import day_1
+from python_solutions.day2 import day_2
+from python_solutions.day3 import day_3
+from python_solutions.day4 import day_4
+from python_solutions.day5 import day_5
+from python_solutions.day6 import day_6
+from python_solutions.day7 import day_7
+from python_solutions.day8 import day_8
 
 import sys
 
 def file_name(num, test):
   if test:
-    return f"./inputs/day_{num}_test_input.txt"
+    return f"./AdventOfCode2024/puzzle_inputs/day_{num}_test_input.txt"
   else:
-    return f"./inputs/day_{num}_input.txt"
+    return f"./AdventOfCode2024/puzzle_inputs/day_{num}_input.txt"
 
 def main():
   days = [day_1, day_2, day_3, day_4, day_5, day_6, day_7, day_8]
@@ -42,8 +42,8 @@ def main():
     start = int(start)
     end = int(end)
 
-    if start < 1 or end > 25:
-      print("\nInputed day range was not between 1 and 25. Printing day 1 results instead")
+    if start < 1 or end > 25 or end < start:
+      print("\nInputed day range was not between 1 and 25 or has an incorrect order. Printing day 1 results instead")
       days[0](file_name(1, test))
     else:
       for i in range(start-1, end):
