@@ -52,6 +52,7 @@ int main()
   add_to_hashtable(&map, "sport");
   add_to_hashtable(&map, "Sport");
   add_to_hashtable(&map, "sport");
+  add_to_hashtable(&map, "train");
 
   print_hashtable(&map);
 
