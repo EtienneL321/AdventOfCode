@@ -15,8 +15,10 @@ if [ "$language" == "-p" ]; then
 elif [ "$language" == "-c" ]; then
   path="./AdventOfCode$year/main.c"
   helper_path="./AdventOfCode$year/helper.c"
-  gcc $path $helper_path -o build/main
+  hashtable_path="./AdventOfCode$year/hashtable.c"
+  gcc $path $helper_path $hashtable_path -o build/main
 
   # run c executable
   ./build/main
+  rm ./build/main
 fi

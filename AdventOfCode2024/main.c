@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "helper.h"
+#include "hashtable.h"
 
 int calculate_distance(int *list1, int *list2, int size)
 {
@@ -44,5 +45,16 @@ int main()
   //   printf("Values at %d is: %d and %d\n", i, list1[i], list2[i]);
   // }
 
+  Hashtable map;
+
+  initialize_hashtable(&map);
+
+  add_to_hashtable(&map, "sport");
+  add_to_hashtable(&map, "Sport");
+  add_to_hashtable(&map, "sport");
+
+  print_hashtable(&map);
+
+  free_hashtable(&map);
   return 0;
 }
