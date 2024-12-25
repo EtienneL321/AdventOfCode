@@ -73,6 +73,10 @@ int main()
 
   int c = search_hashtable(&map, "Hello world");
 
+  key = "sport";
+  remove_from_hashtable(&map, key);
+  print_hashtable(&map);
+
   free_hashtable(&map);
   printf("\n");
   return 0;
