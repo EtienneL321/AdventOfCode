@@ -18,6 +18,7 @@ int calculate_distance(int *list1, int *list2, int size)
 
 int main()
 {
+  printf("\n");
 
   int list1[1000];
   int list2[1000];
@@ -53,9 +54,26 @@ int main()
   add_to_hashtable(&map, "Sport");
   add_to_hashtable(&map, "sport");
   add_to_hashtable(&map, "train");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World!");
+  add_to_hashtable(&map, "Hello World");
 
   print_hashtable(&map);
 
+  char *key = "Hello World!";
+  int n = search_hashtable(&map, key);
+  if (n != -1)
+  {
+    printf("Key \"%s\" has a value of %d\n", key, n);
+  }
+
+  int c = search_hashtable(&map, "Hello world");
+
   free_hashtable(&map);
+  printf("\n");
   return 0;
 }
