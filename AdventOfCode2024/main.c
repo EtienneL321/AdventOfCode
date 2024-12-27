@@ -71,10 +71,28 @@ int main()
     printf("Key \"%s\" has a value of %d\n", key, n);
   }
 
-  int c = search_hashtable(&map, "Hello world");
+  /**
+   * An intersting bug occurs here where just inputing the string "Hello World" as the
+   * input causes a "No key found error" even if the key "Hello World" can be found.
+   * This is probably caused by a key of type char * being different than the default type
+   * given to the c string "Hello World".
+   */
+  int c = search_hashtable(&map, (char *)"Hello world");
 
   key = "sport";
   remove_from_hashtable(&map, key);
+  // print_hashtable(&map);
+
+  add_to_hashtable(&map, "tree");
+  add_to_hashtable(&map, "Francais");
+  add_to_hashtable(&map, "Fourmi");
+  add_to_hashtable(&map, "Joe Dassin");
+  add_to_hashtable(&map, "Duran Duran");
+  add_to_hashtable(&map, "Queen");
+  add_to_hashtable(&map, "View to a Kill");
+  // add_to_hashtable(&map, "Rio");
+  // add_to_hashtable(&map, "Hungry");
+
   print_hashtable(&map);
 
   free_hashtable(&map);
