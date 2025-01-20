@@ -119,7 +119,9 @@ def move_blocks_without_fragmentation(line):
       if line[left][0] >= line[right][0]:
 
         # if statements change the template for the disk map
-        if right == len(line) - 1:
+        if right - left == 1:
+          line = line[:left] + [(0, ".")] + [line[right]] + [(line[left][0] - line[right][0], ".")] + [(line[right][0] + line[right + 1][0], ".")] + line[right + 2:]
+        elif right == len(line) - 1:
           line = line[:left] + [(0, ".")] + [line[right]] + [(line[left][0] - line[right][0], ".")] + line[left+1:right - 1]
         else:
           line = line[:left] + [(0, ".")] + [line[right]] + [(line[left][0] - line[right][0], ".")] + line[left+1:right - 1] + [(line[right - 1][0] + line[right][0] + line[right + 1][0], ".")] + line[right + 2:]
