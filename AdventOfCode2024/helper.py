@@ -32,7 +32,12 @@ def read_to_integer_matrix(input_file_name):
 
       # Iterate through each line of the input file
       while line := file.readline():
-        row = list(map(int, line.split()))
+        row = list(line)
+
+        if row[-1] == '\n':
+          row = row[:-1]
+        
+        row = list(map(int, row))
 
         # Store each row in matrix
         matrix.append(row)
