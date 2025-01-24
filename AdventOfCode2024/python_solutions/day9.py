@@ -7,7 +7,7 @@ def day_9(input_text):
   print("**********************************************************")
 
   checksum = read_by_line(input_text, calculate_filesystem_checksum)
-  print(f"The checksum of the first filesystem is {checksum}\n")
+  print(f"The checksum of the first filesystem is {checksum}")
 
   checksum = read_by_line(input_text, calculate_filesystem_checksum_without_fragmentation)
   print(f"The checksum of filesystem without fragmentation is {checksum}\n")
