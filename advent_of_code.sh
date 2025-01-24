@@ -10,7 +10,7 @@ test_flag=$4
 
 if [ "$language" == "-p" ]; then
   path="./AdventOfCode$year/main.py"
-  python3 $path $days $test_flag
+  time python3 $path $days $test_flag
 
 elif [ "$language" == "-c" ]; then
   path="./AdventOfCode$year/main.c"

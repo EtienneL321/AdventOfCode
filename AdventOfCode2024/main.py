@@ -8,6 +8,7 @@ from python_solutions.day7 import day_7
 from python_solutions.day8 import day_8
 from python_solutions.day9 import day_9
 from python_solutions.day10 import day_10
+from python_solutions.day11 import day_11
 
 import sys
 
@@ -18,7 +19,7 @@ def file_name(num, test):
     return f"./AdventOfCode2024/puzzle_inputs/day_{num}_input.txt"
 
 def main():
-  days = [day_1, day_2, day_3, day_4, day_5, day_6, day_7, day_8, day_9, day_10]
+  days = [day_1, day_2, day_3, day_4, day_5, day_6, day_7, day_8, day_9, day_10, day_11]
 
   try:
     query = sys.argv[1]
