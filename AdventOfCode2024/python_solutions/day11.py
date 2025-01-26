@@ -1,6 +1,5 @@
 # day11.py
 from helper import read_by_line
-import datetime
 
 iterations = 75
 
@@ -48,7 +47,7 @@ def day_11(input_text):
   greater than or equal to iterations - current iteration (5). If it is, then we can return the number of nodes at
   that iteration. If not, we add to the iteration node count. (still not 100% sure how this part will be done yet)
   """
-  number_of_stones = read_by_line(input_text, get_stone_count)
+  number_of_stones = read_by_line(input_text, stone_count)
   print(f"The number of stones after {iterations} iterations is: {number_of_stones}")
 
 
@@ -137,10 +136,74 @@ def get_stone_count(input):
   str_line = input.split(" ")
   print(int_line)
 
-  for i in range(iterations):
-    print(f"iteration: {i}  time: {datetime.datetime.now()}")
+  for _ in range(iterations):
     int_line, str_line = blink(int_line, str_line)
     # print(int_line)
     # print(str_line)
 
   return len(int_line)
+
+
+def stone_count(input):
+  num_inputs = list(map(int, input.split(" ")))
+
+  total_stone_count = 0
+  for num in num_inputs:
+    # print(f"########### Calculating stones for {num} ############")
+    mem = dp_blink(num, iterations)
+    # print(mem, num)
+    total_stone_count += mem[0]
+  
+  return total_stone_count
+
+stone_dict = dict()
+
+def dp_blink(num, iter):
+  if iter == 0:
+    return []
+  
+  if num in stone_dict and len(stone_dict[num]) >= iter:
+    # print("Exception", stone_dict[num], "for iteration", iterations - iter, "and num", num, ". The remaining iterations are", iter, "So i need to return", stone_dict[num][len(stone_dict[num]) - iter:])
+    return stone_dict[num][len(stone_dict[num]) - iter:]
+
+  str_num = str(num)
+  increment_type = 1 # 1 for incrementing by 1, 2 for incrementing by 2
+  if num == 0:
+    mem = dp_blink(1, iter - 1)
+  elif len(str_num) % 2 == 0:
+    increment_type = 2
+
+    half = len(str_num) // 2
+    left = str_num[:half]
+    right = str_num[half:]
+
+    right = right.lstrip('0')
+
+    if right == '':
+      right = '0'
+    
+    left_mem = dp_blink(int(left), iter - 1)
+    right_mem = dp_blink(int(right), iter - 1)
+    
+    mem = add_lists(left_mem, right_mem)
+  else:
+    mem = dp_blink(num * 2024, iter - 1)
+
+  stone_dict[num] = mem + [increment_type]
+  
+  return stone_dict[num]
+
+
+def add_lists(list1, list2):
+  new_list = []
+  l = min(len(list1), len(list2))
+
+  for i in range(l):
+    new_list.append(list1[i] + list2[i])
+  
+  if len(list1) > len(list2):
+    new_list += list1[l:]
+  else:
+    new_list += list2[l:]
+  
+  return new_list
