@@ -10,6 +10,10 @@ def day_13(input_text):
   tokens_spend = calculate_button_presses()
   print(f"The total number of tokens spent is : {tokens_spend}")
 
+  increment_prize_location()
+  tokens_spend = calculate_button_presses()
+  print(f"The total number of tokens spent after increment the prize location is : {tokens_spend}")
+
 
 class Point:
   def __init__(self, x, y):
@@ -31,6 +35,16 @@ games = list()
 
 b_press_price = 1
 a_press_price = 3
+
+
+"""
+Increments the prize location by 10000000000000
+"""
+def increment_prize_location():
+  for game in games:
+    game.prize.x += 10000000000000
+    game.prize.y += 10000000000000
+
 
 """
 Stores button A and B increments as well as the prize location
@@ -74,6 +88,11 @@ def calculate_button_presses():
 
 
 def play_game(game):
+  """
+  We use some fun math here to solve the game. This problem creates two equations and we solve for their intersection
+  Ax_1 + Bx_2 = x_f
+  Ay_1 + By_2 = y_f
+  """
   num = game.prize.y * game.B.x - game.prize.x * game.B.y
   dem = game.A.y * game.B.x - game.B.y * game.A.x
   A = num // dem
