@@ -7,7 +7,6 @@ days=$3
 test_flag=$4
 
 
-
 if [ "$language" == "-p" ]; then
   path="./AdventOfCode$year/main.py"
   time python3 $path $days $test_flag
@@ -15,9 +14,20 @@ if [ "$language" == "-p" ]; then
 elif [ "$language" == "-c" ]; then
   path="./AdventOfCode$year/main.c"
   helper_path="./AdventOfCode$year/helper.c"
-  gcc $path $helper_path -o build/main
+  solution_path="./AdventOfCode$year/c_solutions/*.c"
+  gcc $path $helper_path $solution_path -o build/main_c
 
   # run c executable
-  ./build/main
-  rm ./build/main
+  ./build/main_c
+  rm ./build/main_c
+
+elif [ "$language" == "-cpp" ]; then
+  path="./AdventOfCode$year/main.cpp"
+  helper_path="./AdventOfCode$year/helper.cpp"
+  solution_path="./AdventOfCode$year/c++_solutions/*.cpp"
+  g++ $path $helper_path $solution_path -o build/main_cpp
+
+  # run cpp executable
+  ./build/main_cpp
+  rm ./build/main_cpp
 fi
