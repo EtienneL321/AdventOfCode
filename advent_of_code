@@ -28,6 +28,6 @@ elif [ "$language" == "-cpp" ]; then
   g++ $path $helper_path $solution_path -o build/main_cpp
 
   # run cpp executable
-  ./build/main_cpp
+  ./build/main_cpp $days $test_flag
   rm ./build/main_cpp
 fi

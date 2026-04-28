@@ -30,16 +30,13 @@ int position = startPosition;
 int zeroPositionOccurences = 0;
 int zeroExtraPositionOccurences = 0;
 
-void day_1()
+void day_1(std::string fileName)
 {
   std::cout << "\n**********************************************************" << std::endl;
   std::cout << "************************* Day 1 **************************" << std::endl;
   std::cout << "**********************************************************" << std::endl;
 
-  std::string test_file = "./AdventOfCode2025/puzzle_inputs/day_1_test_input.txt";
-  std::string real_file = "./AdventOfCode2025/puzzle_inputs/day_1_input.txt";
-
-  InputReader puzzle(real_file);
+  InputReader puzzle(fileName);
 
   position = startPosition;
   puzzle.ReadByLine(calculateCombination);

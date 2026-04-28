@@ -1,8 +1,62 @@
+// #include <vector>
+
 #include "c++_solutions/days.h"
 
-int main()
+std::string getFileName(int day, bool test)
 {
-  day_1();
-  std::cout << std::endl;
+  std::string fileName;
+  if (test)
+  {
+    fileName = "./AdventOfCode2025/puzzle_inputs/day_" + std::to_string(day) + "_test_input.txt";
+  }
+  else
+  {
+    fileName = "./AdventOfCode2025/puzzle_inputs/day_" + std::to_string(day) + "_input.txt";
+  }
+
+  return fileName;
+}
+
+int main(int argc, char *argv[])
+{
+  if (argc < 2)
+  {
+    std::cout << "Wrong argument count, please include the day and optional test flag" << std::endl;
+  }
+
+  std::function<void(std::string)> dayList[1] = {day_1};
+
+  int day = std::stoi(argv[1]);
+  if (day < 1 || day > 25)
+  {
+    std::cout << "Inputed day was not between 1 and 25. Printing day 1 instead." << std::endl;
+    day = 1;
+  }
+
+  // Store any flags in a vector (For some reason I cannot add libraries?)
+  // vector<std::string> flags;
+  // for (int i = 2; i < argc; i++)
+  // {
+  //   std::string value = argv[i];
+  //   if (value[0] == '-' && (sizeof(value) / sizeof(value[0])) > 1) {
+  //     flags.push_back(value[1]);
+  //   }
+  // }
+
+  bool testFlag = false;
+  if (argc == 3 && argv[2] == "-f")
+  {
+    testFlag = true;
+  }
+
+  std::string fileName = getFileName(day, testFlag);
+
+  // Call day function
+  if (day < (sizeof(dayList) / sizeof(dayList[0])))
+  {
+    std::cout << "Inputed day has no solution. Printing day 1 instead." << std::endl;
+  }
+  dayList[day](fileName);
+
   return 0;
 }

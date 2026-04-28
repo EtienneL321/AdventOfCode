@@ -3,6 +3,6 @@
 
 #include <iostream>
 
-void day_1();
+void day_1(std::string);
 
 #endif // DAYS_H
