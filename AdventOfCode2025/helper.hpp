@@ -7,8 +7,8 @@ public:
   explicit InputReader(const std::string &fileName); // Constructor
   ~InputReader();                                    // Destructor
 
-  int ReadByLine(std::function<void(std::string)>);
-  int ReadBySeparator(char, std::function<void(std::string)>);
+  int readByLine(std::function<void(std::string)>);
+  int readBySeparator(char, std::function<void(std::string)>);
 
 private:
   std::string fileName;

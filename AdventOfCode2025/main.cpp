@@ -1,4 +1,4 @@
-// #include <vector>
+#include <vector>
 
 #include "c++_solutions/days.h"
 
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     std::cout << "Wrong argument count, please include the day and optional test flag" << std::endl;
   }
 
-  std::function<void(std::string)> dayList[1] = {day_1};
+  std::function<void(std::string)> dayList[2] = {day_1, day_2};
 
   int day = std::stoi(argv[1]);
   if (day < 1 || day > 25)
@@ -33,28 +33,33 @@ int main(int argc, char *argv[])
     day = 1;
   }
 
-  // Store any flags in a vector (For some reason I cannot add libraries?)
-  // vector<std::string> flags;
-  // for (int i = 2; i < argc; i++)
-  // {
-  //   std::string value = argv[i];
-  //   if (value[0] == '-' && (sizeof(value) / sizeof(value[0])) > 1) {
-  //     flags.push_back(value[1]);
-  //   }
-  // }
+  // Store any flags in a vector
+  std::vector<char> flags;
+  for (int i = 2; i < argc; i++)
+  {
+    std::string value = argv[i];
+    if (value[0] == '-' && (sizeof(value) / sizeof(value[0])) > 1)
+    {
+      flags.push_back(value[1]);
+    }
+  }
 
   bool testFlag = false;
-  if (argc == 3 && argv[2][1] == 'f')
+  for (char &flag : flags)
   {
-    testFlag = true;
+    if (flag == 't')
+    {
+      testFlag = true;
+    }
   }
 
   std::string fileName = getFileName(day, testFlag);
 
   // Call day function
-  if (day < (sizeof(dayList) / sizeof(dayList[0])))
+  if (day > (sizeof(dayList) / sizeof(dayList[0])))
   {
     std::cout << "Inputed day has no solution. Printing day 1 instead." << std::endl;
+    day = 1;
   }
 
   // offset day by 1

@@ -39,7 +39,7 @@ void day_1(std::string fileName)
   InputReader puzzle(fileName);
 
   position = startPosition;
-  puzzle.ReadByLine(calculateCombination);
+  puzzle.readByLine(calculateCombination);
 
   std::cout << "The number of 0 occurences in the sequence is " << zeroPositionOccurences << std::endl;
   std::cout << "The number of 0 occurences using method 0x434C49434B is " << zeroExtraPositionOccurences << std::endl;

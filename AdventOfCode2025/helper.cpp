@@ -12,7 +12,7 @@ InputReader::~InputReader()
   this->file.close();
 }
 
-int InputReader::ReadByLine(std::function<void(std::string)> callback)
+int InputReader::readByLine(std::function<void(std::string)> callback)
 {
   // Check if the file open
   if (!file.is_open())
@@ -31,7 +31,7 @@ int InputReader::ReadByLine(std::function<void(std::string)> callback)
   return 0;
 }
 
-int InputReader::ReadBySeparator(char separator, std::function<void(std::string)> callback)
+int InputReader::readBySeparator(char separator, std::function<void(std::string)> callback)
 {
   // Check if the file open
   if (!file.is_open())
