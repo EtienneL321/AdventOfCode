@@ -8,6 +8,7 @@ public:
   ~InputReader();                                    // Destructor
 
   int ReadByLine(std::function<void(std::string)>);
+  int ReadBySeparator(char, std::function<void(std::string)>);
 
 private:
   std::string fileName;
