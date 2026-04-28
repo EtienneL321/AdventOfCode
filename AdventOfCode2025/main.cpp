@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
   // }
 
   bool testFlag = false;
-  if (argc == 3 && argv[2] == "-f")
+  if (argc == 3 && argv[2][1] == 'f')
   {
     testFlag = true;
   }
@@ -56,6 +56,9 @@ int main(int argc, char *argv[])
   {
     std::cout << "Inputed day has no solution. Printing day 1 instead." << std::endl;
   }
+
+  // offset day by 1
+  day--;
   dayList[day](fileName);
 
   return 0;

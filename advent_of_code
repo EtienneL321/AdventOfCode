@@ -27,6 +27,8 @@ elif [ "$language" == "-cpp" ]; then
   solution_path="./AdventOfCode$year/c++_solutions/*.cpp"
   g++ $path $helper_path $solution_path -o build/main_cpp
 
+  echo $days
+  echo $test_flag
   # run cpp executable
   ./build/main_cpp $days $test_flag
   rm ./build/main_cpp
