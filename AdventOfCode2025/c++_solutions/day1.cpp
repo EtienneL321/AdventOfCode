@@ -1,5 +1,5 @@
 #include <iostream>
-#include "days.h"
+#include "days.hpp"
 #include "../helper.hpp"
 
 // class Combination : public InputReader

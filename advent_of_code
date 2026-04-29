@@ -38,11 +38,17 @@ elif [ "$language" == "-cpp" ]; then
   path="./AdventOfCode$year/main.cpp"
   helper_path="./AdventOfCode$year/helper.cpp"
   solution_path="./AdventOfCode$year/c++_solutions/"*.cpp
-  output="./build/main_cpp"
+  output="./build/AdventOfCode2025/main_cpp"
+
+  echo "Generating CMake files..."
+  if ! cmake -S . -B build; then
+    echo "CMake configuration failed"
+    exit 1
+  fi
 
   echo "Compiling C++ files..."
 
-  if ! g++ -std=c++11 "$path" "$helper_path" $solution_path -o "$output"; then
+  if ! cmake --build build; then
     echo "C++ compilation failed"
     exit 1
   fi

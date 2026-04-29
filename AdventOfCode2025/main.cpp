@@ -1,6 +1,6 @@
 #include <vector>
 
-#include "c++_solutions/days.h"
+#include "c++_solutions/days.hpp"
 
 std::string getFileName(int day, bool test)
 {
