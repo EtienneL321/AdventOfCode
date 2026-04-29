@@ -1,33 +1,63 @@
 #!/bin/bash
 
-# get year, language, day(s), and test flag from the terminal input
 year=$1
 language=$2
 days=$3
 test_flag=$4
 
+mkdir -p build
 
 if [ "$language" == "-p" ]; then
   path="./AdventOfCode$year/main.py"
-  time python3 $path $days $test_flag
+
+  time python3 "$path" "$days" "$test_flag"
 
 elif [ "$language" == "-c" ]; then
   path="./AdventOfCode$year/main.c"
   helper_path="./AdventOfCode$year/helper.c"
-  solution_path="./AdventOfCode$year/c_solutions/*.c"
-  gcc $path $helper_path $solution_path -o build/main_c
+  solution_path="./AdventOfCode$year/c_solutions/"*.c
+  output="./build/main_c"
 
-  # run c executable
-  ./build/main_c
-  rm ./build/main_c
+  echo "Compiling C files..."
+
+  if ! gcc "$path" "$helper_path" $solution_path -o "$output"; then
+    echo "C compilation failed"
+    exit 1
+  fi
+
+  echo "Running C executable..."
+
+  if ! "$output" "$days" "$test_flag"; then
+    echo "C program exited with an error"
+    exit 1
+  fi
+
+  rm "$output"
 
 elif [ "$language" == "-cpp" ]; then
   path="./AdventOfCode$year/main.cpp"
   helper_path="./AdventOfCode$year/helper.cpp"
-  solution_path="./AdventOfCode$year/c++_solutions/*.cpp"
-  g++ -std=c++11 $path $helper_path $solution_path -o build/main_cpp
+  solution_path="./AdventOfCode$year/c++_solutions/"*.cpp
+  output="./build/main_cpp"
 
-  # run cpp executable
-  ./build/main_cpp $days $test_flag
-  rm ./build/main_cpp
+  echo "Compiling C++ files..."
+
+  if ! g++ -std=c++11 "$path" "$helper_path" $solution_path -o "$output"; then
+    echo "C++ compilation failed"
+    exit 1
+  fi
+
+  echo "Running C++ executable..."
+
+  if ! "$output" "$days" "$test_flag"; then
+    echo "C++ program exited with an error"
+    exit 1
+  fi
+
+  rm "$output"
+
+else
+  echo "Unknown language flag: $language"
+  echo "Use -p, -c, or -cpp"
+  exit 1
 fi

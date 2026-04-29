@@ -27,7 +27,7 @@ bool repeatedSequence(std::string);
 //   int sumOfInvalidIds;
 // };
 
-int sumOfInvalidIds = 0;
+long long sumOfInvalidIds = 0;
 
 void day_2(std::string fileName)
 {
@@ -46,7 +46,6 @@ void day_2(std::string fileName)
 
 void invalidId(std::string ids)
 {
-  std::cout << ids << std::endl;
   // Step 1: Split ids
   // Step 2: Remove any odd numbered ids
   // Step 3: Check for invalid ID with remainder
@@ -57,13 +56,17 @@ void invalidId(std::string ids)
   {
     parsedIDs.push_back(token);
   }
+  long long start = std::stoll(parsedIDs[0]);
+  long long end = std::stoll(parsedIDs[1]);
 
-  for (auto &id : parsedIDs)
+  while (start <= end)
   {
+    std::string id = std::to_string(start);
     if (id.length() % 2 == 0 && repeatedSequence(id))
     {
-      sumOfInvalidIds += std::stoi(id);
+      sumOfInvalidIds += std::stoll(id);
     }
+    start++;
   }
 }
 

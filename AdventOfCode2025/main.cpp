@@ -55,7 +55,6 @@ int main(int argc, char *argv[])
 
   std::string fileName = getFileName(day, testFlag);
 
-  // Call day function
   if (day > (sizeof(dayList) / sizeof(dayList[0])))
   {
     std::cout << "Inputed day has no solution. Printing day 1 instead." << std::endl;
