@@ -6,4 +6,6 @@
 void day_1(std::string);
 void day_2(std::string);
 
+void calculateCombination(std::string);
+
 #endif // DAYS_H

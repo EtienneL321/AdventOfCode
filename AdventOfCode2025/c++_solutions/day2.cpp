@@ -73,7 +73,6 @@ void invalidId(std::string ids)
     // Second solution
     if (repeatedXSequence(id))
     {
-      std::cout << id << std::endl;
       sumOfInvalidXIds += std::stoll(id);
     }
 
