@@ -65,5 +65,6 @@ elif [ "$language" == "-cpp" ]; then
 else
   echo "Unknown language flag: $language"
   echo "Use -p, -c, or -cpp"
+  echo "With format {year} {language_flag} {day(s)} {test_flag}"
   exit 1
 fi

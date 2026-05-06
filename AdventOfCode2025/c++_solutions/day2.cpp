@@ -43,7 +43,7 @@ void day_2(std::string fileName)
   puzzle.readBySeparator(separator, invalidId);
 
   std::cout << "The sum of invalid ids with twice repeated patterns is " << sumOfInvalidIds << std::endl;
-  std::cout << "The sum of invalid ids with multiple repeated patterms is " << sumOfInvalidXIds << std::endl;
+  std::cout << "The sum of invalid ids with multiple repeated patterns is " << sumOfInvalidXIds << std::endl;
 }
 
 void invalidId(std::string ids)
@@ -105,16 +105,17 @@ bool repeatedXSequence(std::string id)
   }
 
   // Create substrings until halfway through
-  std::string sub = std::to_string(id[0]); // first substring to test
-  int mid = id.length() / 2;               // middle index of id
+  std::string sub(1, id[0]); // first substring to test
+  int mid = id.length() / 2; // middle index of id
 
+start_while_loop:
   while (sub.length() <= mid)
   {
     // Step 1: Check if id is divisible by substring length
     if (id.length() % sub.length() != 0)
     {
-      sub += id[sub.length() + 1];
-      continue;
+      sub += id[sub.length()];
+      goto start_while_loop;
     }
 
     // Step 2: Check if this substring creates a pattern
@@ -127,12 +128,13 @@ bool repeatedXSequence(std::string id)
         // No match means the substring is not repeated
         if (id[j] != sub[j - i])
         {
-          continue;
+          sub += id[sub.length()];
+          goto start_while_loop;
         }
       }
     }
 
-    // Step 3: If we made it past the double for loop, that means out substring was repeated
+    // Step 3: If we made it past the double for loop, that means our substring was repeated
     return true;
   }
 
