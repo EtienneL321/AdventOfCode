@@ -11,6 +11,6 @@ void day_3(std::string);
 void calculateCombination(std::string);
 
 // day 3
-void largestJoltage(std::string);
+void calculateJoltageSum(std::string);
 
 #endif // DAYS_H
