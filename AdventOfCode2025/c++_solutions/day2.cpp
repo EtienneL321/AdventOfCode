@@ -1,52 +1,42 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
-#include "days.hpp"
+#include "day2.hpp"
 #include "../helper.hpp"
 
-void invalidId(std::string);
-bool repeatedSequence(std::string);
-bool repeatedXSequence(std::string);
+Day2::Day2(const std::string &fileName)
+    : sumOfInvalidIds(0), sumOfInvalidXIds(0)
+{
+  InputReader reader(fileName);
+  input = reader.readBySeparatorToVector(',');
+}
 
-// class InvalidIdPuzzle : public InputReader
-// {
-// public:
-//   InvalidIdPuzzle(const std::string &filename)
-//       : InputReader(filename), sumOfInvalidIds(0)
-//   {
-//   }
-//   ~InvalidIdPuzzle() {};
-
-//   void invalidId(std::string);
-
-//   int getSumOfInvalidIds()
-//   {
-//     return sumOfInvalidIds;
-//   };
-
-// private:
-//   int sumOfInvalidIds;
-// };
-
-long long sumOfInvalidIds = 0;
-long long sumOfInvalidXIds = 0;
-
-void day_2(std::string fileName)
+void Day2::solve()
 {
   std::cout << "\n**********************************************************" << std::endl;
   std::cout << "************************* Day 2 **************************" << std::endl;
   std::cout << "**********************************************************" << std::endl;
 
-  char separator = ',';
-  InputReader puzzle(fileName);
-
-  puzzle.readBySeparator(separator, invalidId);
+  for (const auto &ids : input)
+  {
+    invalidId(ids);
+  }
 
   std::cout << "The sum of invalid ids with twice repeated patterns is " << sumOfInvalidIds << std::endl;
   std::cout << "The sum of invalid ids with multiple repeated patterns is " << sumOfInvalidXIds << std::endl;
 }
 
-void invalidId(std::string ids)
+long long Day2::getSumOfInvalidIds() const
+{
+  return sumOfInvalidIds;
+}
+
+long long Day2::getSumOfInvalidXIds() const
+{
+  return sumOfInvalidXIds;
+}
+
+void Day2::invalidId(const std::string &ids)
 {
   // Step 1: Split ids
   // Step 2: Remove any odd numbered ids
@@ -80,7 +70,7 @@ void invalidId(std::string ids)
   }
 }
 
-bool repeatedSequence(std::string id)
+bool Day2::repeatedSequence(const std::string &id)
 {
   int mid = id.length() / 2;
   int start = 0;
@@ -96,7 +86,7 @@ bool repeatedSequence(std::string id)
   return true;
 }
 
-bool repeatedXSequence(std::string id)
+bool Day2::repeatedXSequence(const std::string &id)
 {
   if (id.length() == 1)
   {
@@ -139,4 +129,10 @@ start_while_loop:
   }
 
   return false;
+}
+
+void day_2(std::string fileName)
+{
+  Day2 solution(fileName);
+  solution.solve();
 }
