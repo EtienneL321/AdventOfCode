@@ -52,3 +52,45 @@ int InputReader::readBySeparator(char separator, std::function<void(std::string)
 
   return 0;
 }
+
+std::vector<std::string> InputReader::readByLineToVector()
+{
+  std::vector<std::string> lines;
+
+  if (!file.is_open())
+  {
+    std::cerr << "Error: could not open file " << fileName << "." << std::endl;
+    return lines;
+  }
+
+  std::string line;
+  while (std::getline(file, line))
+  {
+    lines.push_back(line);
+  }
+
+  return lines;
+}
+
+std::vector<std::string> InputReader::readBySeparatorToVector(char separator)
+{
+  std::vector<std::string> tokens;
+
+  if (!file.is_open())
+  {
+    std::cerr << "Error: could not open file " << fileName << "." << std::endl;
+    return tokens;
+  }
+
+  std::string line;
+  std::getline(file, line);
+  std::istringstream tokenStream(line);
+
+  std::string value;
+  while (std::getline(tokenStream, value, separator))
+  {
+    tokens.push_back(value);
+  }
+
+  return tokens;
+}

@@ -1,3 +1,4 @@
+#include <iostream>
 #include <vector>
 
 #include "c++_solutions/days.hpp"

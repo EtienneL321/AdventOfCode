@@ -1,53 +1,80 @@
 #include <iostream>
-#include "days.hpp"
+#include <vector>
+
+#include "day1.hpp"
 #include "../helper.hpp"
 
-// class Combination : public InputReader
-// {
-// public:
-//   Combination(const std::string &filename)
-//       : InputReader(filename), zeroPositionOccurences(0), position(50)
-//   {
-//   }
-//   ~Combination() {};
+Day1::Day1(const std::string &fileName)
+    : startPosition(50), position(startPosition),
+      zeroPositionOccurences(0), zeroExtraPositionOccurences(0)
+{
+  InputReader reader(fileName);
+  input = reader.readByLineToVector();
+}
 
-//   void calculateCombination();
-
-//   int getZeroPositionOccurences()
-//   {
-//     return zeroPositionOccurences;
-//   };
-
-// private:
-//   int position;
-//   int zeroPositionOccurences;
-// };
-
-void calculateCombination(std::string);
-
-int startPosition = 50;
-int position = startPosition;
-int zeroPositionOccurences = 0;
-int zeroExtraPositionOccurences = 0;
-
-void day_1(std::string fileName)
+void Day1::solve()
 {
   std::cout << "\n**********************************************************" << std::endl;
   std::cout << "************************* Day 1 **************************" << std::endl;
   std::cout << "**********************************************************" << std::endl;
 
-  InputReader puzzle(fileName);
+  // We loop outside the solution functions vor easier testing
+  position = startPosition;
+  for (const auto &movement : input)
+  {
+    calculatePart1(movement);
+  }
 
   position = startPosition;
-  puzzle.readByLine(calculateCombination);
+  for (const auto &movement : input)
+  {
+    calculatePart2(movement);
+  }
 
   std::cout << "The number of 0 occurences in the sequence is " << zeroPositionOccurences << std::endl;
   std::cout << "The number of 0 occurences using method 0x434C49434B is " << zeroExtraPositionOccurences << std::endl;
 }
 
-void calculateCombination(std::string movement)
+std::vector<std::string> Day1::getInput() const { return input; }
+
+int Day1::getPosition() const { return position; }
+
+int Day1::getZeroPositionOccurences() const { return zeroPositionOccurences; }
+
+int Day1::getZeroExtraPositionOccurences() const { return zeroExtraPositionOccurences; }
+
+void Day1::resetPosition() { position = startPosition; }
+
+void Day1::resetCounters()
 {
-  // std::cout << "movement: " << movement << "  " << position << "  ";
+  zeroPositionOccurences = 0;
+  zeroExtraPositionOccurences = 0;
+}
+
+void Day1::calculatePart1(const std::string &movement)
+{
+  char move = movement[0];
+  int steps = std::stoi(movement.substr(1));
+
+  if (move == 'L')
+  {
+    position -= steps;
+  }
+  else
+  {
+    position += steps;
+  }
+
+  position = (position % 100 + 100) % 100;
+
+  if (position == 0)
+  {
+    zeroPositionOccurences++;
+  }
+}
+
+void Day1::calculatePart2(const std::string &movement)
+{
   char move = movement[0];
   int steps = std::stoi(movement.substr(1));
 
@@ -69,15 +96,11 @@ void calculateCombination(std::string movement)
     zeroExtraPositionOccurences += 1;
   }
 
-  // std::cout << "zero occurences: " << zeroExtraPositionOccurences << "  ";
-
-  // We use 100 instead of 99 because our range is 0-99 (100 integers)
   position = (position % 100 + 100) % 100;
+}
 
-  if (position == 0)
-  {
-    zeroPositionOccurences++;
-  }
-
-  // std::cout << position << std::endl;
+void day_1(std::string fileName)
+{
+  Day1 solution(fileName);
+  solution.solve();
 }
