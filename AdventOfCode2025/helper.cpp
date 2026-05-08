@@ -94,3 +94,27 @@ std::vector<std::string> InputReader::readBySeparatorToVector(char separator)
 
   return tokens;
 }
+
+std::vector<std::vector<std::string>> InputReader::readGrid()
+{
+  std::vector<std::vector<std::string>> grid;
+
+  if (!file.is_open())
+  {
+    std::cerr << "Error: could not open file " << fileName << "." << std::endl;
+    return grid;
+  }
+
+  std::string row;
+  while (std::getline(file, row))
+  {
+    std::vector<std::string> line;
+    for (auto &col : row)
+    {
+      line.push_back(std::string(1, col));
+    }
+    grid.push_back(line);
+  }
+
+  return grid;
+}

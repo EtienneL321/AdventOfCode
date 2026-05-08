@@ -15,6 +15,7 @@ public:
 
   std::vector<std::string> readByLineToVector();
   std::vector<std::string> readBySeparatorToVector(char);
+  std::vector<std::vector<std::string>> readGrid();
 
 private:
   std::string fileName;
