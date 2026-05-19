@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     std::cout << "Wrong argument count, please include the day and optional test flag" << std::endl;
   }
 
-  std::function<void(std::string)> dayList[3] = {day_1, day_2, day_3};
+  std::function<void(std::string)> dayList[4] = {day_1, day_2, day_3, day_4};
 
   int day = std::stoi(argv[1]);
   if (day < 1 || day > 25)
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 
   if (day > (sizeof(dayList) / sizeof(dayList[0])))
   {
-    std::cout << "Inputed day has no solution. Printing day 1 instead." << std::endl;
+    std::cout << "Input day has no solution. Printing day 1 instead." << std::endl;
     day = 1;
   }
 

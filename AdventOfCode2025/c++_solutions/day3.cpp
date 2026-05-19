@@ -69,7 +69,7 @@ void largestTwelveJoltage(std::string bank)
   int rightBound = bank.length() - numOfCells;
   long long sum = 0;
 
-  // We need a twelve cells so the rightBound is used to get us the largest output up to the max
+  // We need twelve cells so the rightBound is used to get us the largest output up to the max
   // index the cell can occupy
   // Example: 1  2  3  4  5  6  7  8  9  1  1  1  1  1  1
   // Indeces: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14
@@ -77,7 +77,7 @@ void largestTwelveJoltage(std::string bank)
   // it can occupy is up to index 3 (15-12)
 
   // Outer loop will iterate at most 12 times to find our 12 cells
-  // Inner loop mvoer left to right and keeps track of the cell with the largest output
+  // Inner loop moves left to right and keeps track of the cell with the largest output
   for (int i = numOfCells; i > 0; i--)
   {
     int largestNum = bank[leftBound] - '0';

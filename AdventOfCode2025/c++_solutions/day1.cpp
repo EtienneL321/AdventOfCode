@@ -12,6 +12,10 @@ Day1::Day1(const std::string &fileName)
   input = reader.readByLineToVector();
 }
 
+Day1::~Day1()
+{
+}
+
 void Day1::solve()
 {
   std::cout << "\n**********************************************************" << std::endl;

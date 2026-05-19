@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <vector>
+
 #include "day2.hpp"
 #include "../helper.hpp"
 
@@ -9,6 +10,10 @@ Day2::Day2(const std::string &fileName)
 {
   InputReader reader(fileName);
   input = reader.readBySeparatorToVector(',');
+}
+
+Day2::~Day2()
+{
 }
 
 void Day2::solve()

@@ -8,6 +8,7 @@ class Day1
 {
 public:
   explicit Day1(const std::string &fileName);
+  ~Day1();
 
   void solve();
 
